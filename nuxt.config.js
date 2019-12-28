@@ -61,11 +61,13 @@ export default {
         }
       }
     },
+    watch: ['api'],
     /*
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
   },
+  serverMiddleware: ['~/api'],
   env: {
     spotifyId: process.env.SPOTIFY_CLIENT_ID,
     clientUrl: process.env.CLIENT_URL
