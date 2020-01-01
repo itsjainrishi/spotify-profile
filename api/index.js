@@ -150,7 +150,7 @@ app.get('/spotify/now-playing/', async (req, res) => {
   try {
     const access_token = await getAccessToken()
     const response = await axios.get(
-      `${spotifyBaseUrl}me/player/currently-playing?market=US`,
+      `${spotifyBaseUrl}me/player/currently-playing`,
       {
         headers: {
           withCredentials: true,
@@ -175,7 +175,7 @@ app.get('/spotify/now-playing/', async (req, res) => {
 async function setLastPlayed(access_token, item) {
   if (!Boolean(item)) {
     const { data } = await axios.get(
-      `${spotifyBaseUrl}me/player/recently-played?market=US`,
+      `${spotifyBaseUrl}me/player/recently-played`,
       {
         headers: {
           withCredentials: true,
