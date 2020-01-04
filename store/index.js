@@ -8,7 +8,15 @@ export const state = () => ({
   nowPlaying: {},
   recentlyPlayed: {},
   trackProgress: 0,
-  isPlaying: false
+  isPlaying: false,
+  longTracks: {},
+  mediumTracks: {},
+  shortTracks: {},
+  longArtists: {},
+  mediumArtists: {},
+  shortArtists: {},
+  activeArtistsRange: {},
+  activeTracksRange: {}
 })
 
 export const mutations = {
@@ -29,6 +37,30 @@ export const mutations = {
   },
   recentlyPlayedChange(state, recentlyPlayed) {
     state.recentlyPlayed = recentlyPlayed
+  },
+  setLongTracks(state, data) {
+    state.longTracks = data
+  },
+  setMediumTracks(state, data) {
+    state.mediumTracks = data
+  },
+  setShortTracks(state, data) {
+    state.shortTracks = data
+  },
+  setLongArtists(state, data) {
+    state.longArtists = data
+  },
+  setMediumArtists(state, data) {
+    state.mediumArtists = data
+  },
+  setShortArtists(state, data) {
+    state.shortArtists = data
+  },
+  activeTracksChange(state, data) {
+    state.activeTracksRange = data
+  },
+  activeArtistsChange(state, data) {
+    state.activeArtistsRange = data
   }
 }
 
@@ -68,5 +100,34 @@ export const actions = {
   updateConnection: ({ commit, state }, isConnected) => {
     commit('connectionChange', isConnected)
     return state.isConnected
+  },
+  setLong: ({ commit, state }, { prop, data }) => {
+    prop === 'tracks'
+      ? commit('setLongTracks', data)
+      : commit('setLongArtists', data)
+  },
+  setMedium: ({ commit, state }, { prop, data }) => {
+    prop === 'tracks'
+      ? commit('setMediumTracks', data)
+      : commit('setMediumArtists', data)
+  },
+  setShort: ({ commit, state }, { prop, data }) => {
+    prop === 'tracks'
+      ? commit('setShortTracks', data)
+      : commit('setShortArtists', data)
+  },
+  updateActiveArtistsRange: ({ commit, state }, prop) => {
+    prop === 'long'
+      ? commit('activeArtistsChange', state.longArtists)
+      : prop === 'medium'
+      ? commit('activeArtistsChange', state.mediumArtists)
+      : commit('activeArtistsChange', state.shortArtists)
+  },
+  updateActiveTracksRange: ({ commit, state }, prop) => {
+    prop === 'long'
+      ? commit('activeTracksChange', state.longTracks)
+      : prop === 'medium'
+      ? commit('activeTracksChange', state.mediumTracks)
+      : commit('activeTracksChange', state.shortTracks)
   }
 }

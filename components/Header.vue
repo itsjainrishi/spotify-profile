@@ -8,6 +8,7 @@
         to="/auth"
         name="auth"
         aria-label="Login"
+        class="header-anchor"
       />
     </h1>
   </header>
@@ -31,8 +32,6 @@ h1 {
   letter-spacing: 1px;
   font-size: 15em;
   transform: rotate(-3deg) translateY(-50%);
-  -webkit-box-reflect: below 0px
-    linear-gradient(transparent, rgba(255, 255, 255, 0.3));
   margin: 0.67em 0;
 }
 h1 a {

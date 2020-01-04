@@ -26,7 +26,7 @@ export default {
     env: { SPOTIFY_CLIENT_ID: spotifyId, CLIENT_URL: clientUrl },
     query
   }) {
-    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyId}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=${clientUrl}/api/spotify/callback`
+    const spotifyUrl = `https://accounts.spotify.com/authorize?client_id=${spotifyId}&response_type=code&scope=user-top-read,user-read-currently-playing,user-read-recently-played&redirect_uri=${clientUrl}/api/spotify/callback`
     return {
       spotifyUrl,
       query

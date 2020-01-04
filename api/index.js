@@ -197,6 +197,90 @@ function postStoredTrack(props) {
   )
 }
 
+app.get('/spotify/top-tracks/', async (req, res) => {
+  try {
+    const access_token = await getAccessToken()
+    const shortTracks = await axios.get(
+      `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=short_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const mediumTracks = await axios.get(
+      `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const longTracks = await axios.get(
+      `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const { data: shortdata } = shortTracks
+    const { data: mediumdata } = mediumTracks
+    const { data: longdata } = longTracks
+    // setLastPlayed(access_token, data)
+    // const reply = await callStorage('get', 'last_played')
+    res.send({ short: shortdata, medium: mediumdata, long: longdata })
+  } catch (err) {
+    console.error(err)
+    res.send({ error: err.message })
+  }
+})
+
+app.get('/spotify/top-artists/', async (req, res) => {
+  try {
+    const access_token = await getAccessToken()
+    const shortArtists = await axios.get(
+      `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=short_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const mediumArtists = await axios.get(
+      `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=medium_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const longArtists = await axios.get(
+      `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    const { data: shortdata } = shortArtists
+    const { data: mediumdata } = mediumArtists
+    const { data: longdata } = longArtists
+    // setLastPlayed(access_token, data)
+    // const reply = await callStorage('get', 'last_played')
+    res.send({ short: shortdata, medium: mediumdata, long: longdata })
+  } catch (err) {
+    console.error(err)
+    res.send({ error: err.message })
+  }
+})
+
 module.exports = {
   path: '/api/',
   handler: app
