@@ -1,9 +1,9 @@
 <template>
-  <div class="columns is-multiline base-profile">
-    <section id="navbar" class="column is-2">
+  <div class="base-profile">
+    <section id="navbar">
       <Sidenav />
     </section>
-    <section class="content column">
+    <section class="content">
       <nuxt />
     </section>
   </div>
@@ -15,7 +15,7 @@ import Sidenav from '~/components/Sidenav.vue'
 export default {
   components: { Sidenav },
   titleShort: 'is Listening',
-  authorName: 'Ram',
+  authorName: 'Rishi',
   computed: {
     isAuth() {
       return this.$route.name === 'auth'
@@ -70,6 +70,9 @@ body {
     background: none;
   }
 }
+.content {
+  padding-left: 100px;
+}
 #navbar {
   background-color: #000000;
   bottom: 0;
@@ -91,7 +94,7 @@ body {
     position: fixed;
   }
   .content {
-    padding: 0;
+    padding: 0 0 70px 0;
   }
 }
 @media (min-width: 769px) {

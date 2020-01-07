@@ -167,7 +167,6 @@ app.get('/spotify/now-playing/', async (req, res) => {
       progress_ms: data.progress_ms || 0
     })
   } catch (err) {
-    console.error(err)
     res.send({ error: err.message })
   }
 })
@@ -183,13 +182,13 @@ async function setLastPlayed(access_token, item) {
         }
       }
     )
-    postStoredTrack(data.items[0].track)
+    postStored(data.items[0].track)
   } else {
-    postStoredTrack(item.item)
+    postStored(item.item)
   }
 }
 
-function postStoredTrack(props) {
+function postStored(props) {
   callStorage(
     ...storageArgs('last_played', {
       body: props
@@ -234,7 +233,6 @@ app.get('/spotify/top-tracks/', async (req, res) => {
     // const reply = await callStorage('get', 'last_played')
     res.send({ short: shortdata, medium: mediumdata, long: longdata })
   } catch (err) {
-    console.error(err)
     res.send({ error: err.message })
   }
 })
@@ -272,11 +270,70 @@ app.get('/spotify/top-artists/', async (req, res) => {
     const { data: shortdata } = shortArtists
     const { data: mediumdata } = mediumArtists
     const { data: longdata } = longArtists
-    // setLastPlayed(access_token, data)
-    // const reply = await callStorage('get', 'last_played')
+
     res.send({ short: shortdata, medium: mediumdata, long: longdata })
   } catch (err) {
-    console.error(err)
+    res.send({ error: err.message })
+  }
+})
+
+app.get('/spotify/recent-tracks/', async (req, res) => {
+  try {
+    const access_token = await getAccessToken()
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/player/recently-played?limit=50`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    
+    const { data } = response
+    res.send({ item: data.items })
+  } catch (err) {
+    res.send({ error: err.message })
+  }
+})
+
+app.get('/spotify/playlists/', async (req, res) => {
+  try {
+    const access_token = await getAccessToken()
+    const response = await axios.get(
+      `https://api.spotify.com/v1/me/playlists`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    
+    const { data } = response
+    res.send({ item: data.items })
+  } catch (err) {
+    res.send({ error: err.message })
+  }
+})
+
+app.get('/spotify/playlist/:id', async (req, res) => {
+  try {
+    const id = req.params.id
+    const access_token = await getAccessToken()
+    const response = await axios.get(
+      `https://api.spotify.com/v1/playlists/${id}`,
+      {
+        headers: {
+          withCredentials: true,
+          Authorization: `Bearer ${access_token}`
+        }
+      }
+    )
+    
+    const { data } = response
+    res.send({ item: data })
+  } catch (err) {
     res.send({ error: err.message })
   }
 })

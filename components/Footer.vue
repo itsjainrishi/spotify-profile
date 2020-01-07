@@ -2,9 +2,9 @@
   <footer>
     <nuxt-link
       :aria-current="isAuth"
-      to="/top-tracks"
-      name="topTracks"
-      aria-label="Top-Tracks"
+      to="/top-artists"
+      name="topArtists"
+      aria-label="Top-Artists"
       >Explore what else Rishi listens to?
     </nuxt-link>
   </footer>
@@ -19,5 +19,6 @@ footer {
   filter: blur(0);
   transition: all 600ms ease-out;
   padding-bottom: 1em;
+  text-align: center;
 }
 </style>

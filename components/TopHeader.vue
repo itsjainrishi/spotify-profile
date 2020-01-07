@@ -42,7 +42,8 @@
 export default {
   props: {
     selectedTab: {
-      type: String
+      type: String,
+      default: 'tracks'
     }
   },
   data() {

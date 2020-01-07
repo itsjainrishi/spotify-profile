@@ -22,7 +22,7 @@
         </li>
 
         <li>
-          <nuxt-link to="/bla2">
+          <nuxt-link to="/recent">
             <IconTime />
             <div>Recent</div>
           </nuxt-link>

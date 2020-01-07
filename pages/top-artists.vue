@@ -2,8 +2,14 @@
   <section class="main">
     <TopHeader :selectedTab="artists">Top Artists</TopHeader>
     <div class="top__artists__container columns is-mobile">
-      <div class="top__artists__artist column" v-for="artist in activeArtists">
-        <a class="top__artists__artistartwork">
+      <div
+        v-for="artist in activeArtists"
+        class="top__artists__artist column is-half-touch is-one-quarter-desktop"
+      >
+        <a
+          :href="artist.external_urls.spotify"
+          class="top__artists__artistartwork"
+        >
           <img :src="artist.images[0].url" />
         </a>
         <a class="top__artists__artistname">{{ artist.name }}</a>
@@ -18,7 +24,23 @@ import TopHeader from '~/components/TopHeader.vue'
 
 export default {
   layout: 'profile',
+  key: (to) => to.fullPath,
+  // Called to know which transition to apply
+  transition(to, from) {
+    if (!from) {
+      return 'slide-left'
+    }
+    return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
+  },
   components: { TopHeader },
+  computed: {
+    artists() {
+      return 'artists'
+    },
+    activeArtists() {
+      return this.$store.state.activeArtistsRange
+    }
+  },
   async asyncData() {
     const {
       data: { short, medium, long }
@@ -31,28 +53,20 @@ export default {
     this.$store.dispatch('setMedium', { prop: 'artists', data: this.medium })
     this.$store.dispatch('setShort', { prop: 'artists', data: this.short })
     this.$store.dispatch('updateActiveArtistsRange', 'long')
-  },
-  computed: {
-    artists() {
-      return 'artists'
-    },
-    activeArtists() {
-      return this.$store.state.activeArtistsRange
-    }
   }
 }
 </script>
 
 <style lang="scss">
-p {
-  font-weight: 600;
-}
 .main {
   width: 100%;
   max-width: 1400px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 100px 80px;
+  a {
+    color: rgb(255, 255, 255);
+  }
 }
 .top__artists__container {
   margin-top: 50px;
