@@ -43,6 +43,7 @@ export default {
   },
   middleware: 'auth',
   async asyncData() {
+    console.log(process.env.CLIENT_URL)
     const {
       data: { short, medium, long }
     } = await axios.get(`
