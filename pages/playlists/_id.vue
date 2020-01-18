@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Track from '~/components/Track.vue'
 
 export default {
@@ -42,8 +41,7 @@ export default {
   async asyncData(context) {
     const {
       data: { item: playlist }
-    } = await axios.get(`
-      ${process.env.CLIENT_URL}/api/spotify/playlist/${context.params.id}`)
+    } = await context.$axios.get(`/playlist/${context.params.id}`)
     return { playlist }
   }
 }

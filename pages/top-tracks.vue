@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import TopHeader from '~/components/TopHeader.vue'
 import Track from '~/components/Track.vue'
 
@@ -29,11 +28,10 @@ export default {
       return this.$store.state.activeTracksRange
     }
   },
-  async asyncData() {
+  async asyncData(context) {
     const {
       data: { short, medium, long }
-    } = await axios.get(`
-      ${process.env.CLIENT_URL}/api/spotify/top-tracks`)
+    } = await context.$axios.get('/top-tracks')
     return { long: long.items, medium: medium.items, short: short.items }
   },
   mounted() {

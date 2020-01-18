@@ -12,18 +12,16 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Track from '~/components/Track.vue'
 
 export default {
   layout: 'profile',
   components: { Track },
   middleware: 'auth',
-  async asyncData() {
+  async asyncData(context) {
     const {
       data: { item: recentTracks }
-    } = await axios.get(`
-      ${process.env.CLIENT_URL}/api/spotify/recent-tracks`)
+    } = await context.$axios.get('/recent-tracks')
     return { recentTracks }
   }
 }

@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import TopHeader from '~/components/TopHeader.vue'
 
 export default {
@@ -42,12 +41,10 @@ export default {
     }
   },
   middleware: 'auth',
-  async asyncData() {
-    console.log(process.env.CLIENT_URL)
+  async asyncData(context) {
     const {
       data: { short, medium, long }
-    } = await axios.get(`
-      ${process.env.CLIENT_URL}/api/spotify/top-artists`)
+    } = await context.$axios.get('/top-artists')
     return { long: long.items, medium: medium.items, short: short.items }
   },
   mounted() {

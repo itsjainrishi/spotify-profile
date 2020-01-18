@@ -34,16 +34,13 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   layout: 'profile',
   middleware: 'auth',
-  async asyncData() {
+  async asyncData(context) {
     const {
       data: { item: playlists }
-    } = await axios.get(`
-      ${process.env.CLIENT_URL}/api/spotify/playlists`)
+    } = await context.$axios.get('/playlists')
     return { playlists }
   }
 }
