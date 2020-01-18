@@ -22,6 +22,7 @@ export default {
     }
     return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
   },
+  middleware: 'auth',
   components: { TopHeader, Track },
   computed: {
     activeTracks() {

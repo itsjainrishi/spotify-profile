@@ -18,6 +18,7 @@ import Track from '~/components/Track.vue'
 export default {
   layout: 'profile',
   components: { Track },
+  middleware: 'auth',
   async asyncData() {
     const {
       data: { item: recentTracks }

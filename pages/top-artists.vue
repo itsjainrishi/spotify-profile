@@ -41,6 +41,7 @@ export default {
       return this.$store.state.activeArtistsRange
     }
   },
+  middleware: 'auth',
   async asyncData() {
     const {
       data: { short, medium, long }

@@ -32,6 +32,7 @@ import Track from '~/components/Track.vue'
 
 export default {
   layout: 'profile',
+  middleware: 'auth',
   components: { Track },
   computed: {
     playlistTracks() {

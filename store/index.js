@@ -66,6 +66,7 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit({ commit }) {
+    console.log(clientUrl)
     try {
       const redisUrl = `${clientUrl}/api/spotify/data/`
       const {

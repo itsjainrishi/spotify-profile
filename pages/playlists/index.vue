@@ -38,6 +38,7 @@ import axios from 'axios'
 
 export default {
   layout: 'profile',
+  middleware: 'auth',
   async asyncData() {
     const {
       data: { item: playlists }
