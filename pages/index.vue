@@ -3,7 +3,7 @@
     <NowPlaying v-if="showTrack" :nowPlaying="track" :isPlaying="isPlaying" />
     <p v-if="!isConnected">
       {{ $nuxt.layout && $nuxt.layout.authorName }} hasn't connected yet.
-      <a href="http://twitter.com/codehitchhiker">Nudge him</a>
+      <a href="https://twitter.com/RishiJain_RJ">Nudge him</a>
     </p>
   </section>
 </template>
