@@ -68,4 +68,8 @@ export default {
     extend(config, ctx) {}
   },
   serverMiddleware: ['~/api'],
+  env: {
+    spotifyId: process.env.SPOTIFY_CLIENT_ID,
+    clientUrl: process.env.CLIENT_URL
+  }
 }
