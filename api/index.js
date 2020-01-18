@@ -237,6 +237,7 @@ app.get('/spotify/top-tracks/', async (req, res) => {
 })
 
 app.get('/spotify/top-artists/', async (req, res) => {
+  console.log('goddamn')
   try {
     const access_token = await getAccessToken()
     const shortArtists = await axios.get(
@@ -269,10 +270,13 @@ app.get('/spotify/top-artists/', async (req, res) => {
     const { data: shortdata } = shortArtists
     const { data: mediumdata } = mediumArtists
     const { data: longdata } = longArtists
-
+    console.log('Lomgdaya')
+    console.log(longdata)
     res.send({ short: shortdata, medium: mediumdata, long: longdata })
   } catch (err) {
     res.send({ error: err.message })
+    console.log('fcuk')
+    console.log(error)
   }
 })
 
