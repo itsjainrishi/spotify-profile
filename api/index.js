@@ -73,8 +73,6 @@ app.get('/spotify/callback', async ({ query: { code } }, res) => {
 
     if (id !== process.env.SPOTIFY_USER_ID)
       throw "You aren't the droid we're looking for."
-    console.log(id)
-    console.log(process.env.SPOTIFY_USER_ID)
     callStorage(...storageArgs('is_connected', { value: true }))
     callStorage(...storageArgs('refresh_token', { value: refresh_token }))
     callStorage(
