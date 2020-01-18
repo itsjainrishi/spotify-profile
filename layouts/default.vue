@@ -63,6 +63,10 @@ body {
   height: 100vh;
   overflow-x: hidden;
 
+  .content {
+    text-align: center;
+  }
+
   a {
     color: white;
     text-decoration: none;
