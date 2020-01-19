@@ -1,6 +1,6 @@
 # spotify-profile
 
-> My pioneering Nuxt.js project
+> My spotify-profile app
 
 ## Build Setup
 
