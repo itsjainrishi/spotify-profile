@@ -20,6 +20,7 @@
 
 <script>
 import TopHeader from '~/components/TopHeader.vue'
+import axios from '~/plugins/axios'
 
 export default {
   layout: 'profile',
@@ -41,10 +42,10 @@ export default {
     }
   },
   middleware: 'auth',
-  async asyncData(context) {
+  async asyncData() {
     const {
       data: { short, medium, long }
-    } = await context.$axios.get('/top-artists')
+    } = await axios.get('/top-artists')
     return { long: long.items, medium: medium.items, short: short.items }
   },
   mounted() {

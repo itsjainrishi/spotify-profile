@@ -13,15 +13,16 @@
 
 <script>
 import Track from '~/components/Track.vue'
+import axios from '~/plugins/axios'
 
 export default {
   layout: 'profile',
   components: { Track },
   middleware: 'auth',
-  async asyncData(context) {
+  async asyncData() {
     const {
       data: { item: recentTracks }
-    } = await context.$axios.get('/recent-tracks')
+    } = await axios.get('/recent-tracks')
     return { recentTracks }
   }
 }

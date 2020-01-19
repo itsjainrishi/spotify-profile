@@ -10,6 +10,7 @@
 <script>
 import TopHeader from '~/components/TopHeader.vue'
 import Track from '~/components/Track.vue'
+import axios from '~/plugins/axios'
 
 export default {
   layout: 'profile',
@@ -28,10 +29,10 @@ export default {
       return this.$store.state.activeTracksRange
     }
   },
-  async asyncData(context) {
+  async asyncData() {
     const {
       data: { short, medium, long }
-    } = await context.$axios.get('/top-tracks')
+    } = await axios.get('/top-tracks')
     return { long: long.items, medium: medium.items, short: short.items }
   },
   mounted() {

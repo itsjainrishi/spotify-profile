@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-const clientUrl = process.env.CLIENT_URL
-
 export const state = () => ({
   isConnected: false,
   message: null,
@@ -67,7 +65,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit({ commit }) {
     try {
-      const redisUrl = `${clientUrl}/api/spotify/data/`
+      const redisUrl = `${process.env.clientUrl}/api/spotify/data/`
       const {
         data: { is_connected }
       } = await axios.get(`${redisUrl}is_connected`)
@@ -77,7 +75,7 @@ export const actions = {
       if (Boolean(is_connected)) {
         const {
           data: { item, currentSong }
-        } = await axios.get(`${clientUrl}/api/spotify/now-playing`)
+        } = await axios.get(`${process.env.clientUrl}/api/spotify/now-playing`)
         commit('nowPlayingChange', item)
         commit('isPlayingChange', currentSong)
       }

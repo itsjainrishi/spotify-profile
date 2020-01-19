@@ -1,10 +1,12 @@
+require('dotenv').config()
+
 export default {
   mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || 'Now Playing on Spotify',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -49,9 +51,7 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000/api/spotify'
-  },
+  axios: {},
   /*
    ** Build configuration
    */
@@ -72,6 +72,7 @@ export default {
   serverMiddleware: ['~/api'],
   env: {
     spotifyId: process.env.SPOTIFY_CLIENT_ID,
-    clientUrl: process.env.CLIENT_URL
+    clientUrl: process.env.CLIENT_URL,
+    baseUrl: process.env.BASE_API_URL
   }
 }
