@@ -313,6 +313,7 @@ app.get('/spotify/playlists/', async (req, res) => {
     res.send({ item: data.items })
   } catch (err) {
     res.send({ error: err.message })
+    console.log(err.message)
   }
 })
 
