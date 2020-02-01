@@ -1,11 +1,13 @@
 const express = require('express');
 const redis = require('async-redis');
 const axios = require('axios');
+const cors = require('cors');
 
 require('dotenv').config();
 
 const app = express()
 app.use(express.json())
+app.use(cors());
 
 function connectToRedis() {
   const redisClient = redis.createClient(process.env.REDIS_URL)
@@ -308,12 +310,10 @@ app.get('/spotify/playlists/', async (req, res) => {
         }
       }
     )
-    console.log(response)
     const { data } = response
     res.send({ item: data.items })
   } catch (err) {
     res.send({ error: err.message })
-    console.log(err.message)
   }
 })
 
