@@ -69,7 +69,6 @@ export const actions = {
       const {
         data: { is_connected }
       } = await axios.get(`${redisUrl}is_connected`)
-
       commit('connectionChange', is_connected)
 
       if (Boolean(is_connected)) {

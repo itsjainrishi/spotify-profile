@@ -16,7 +16,7 @@
             {{ playlist.tracks.total }} Tracks
           </p>
         </div>
-        <div class="playlist__right column">
+        <div class="playlist__right column is-offset-1">
           <ul>
             <Track v-for="item in playlistTracks" :track="item.track" />
           </ul>
@@ -96,8 +96,8 @@ h3 {
 .playlist__totaltracks {
   font-size: 14px;
 }
-.playlist__right {
-  margin-left: 50px;
+.trackitem__trackleft {
+  max-width: 700px;
 }
 @media (max-width: 1200px) {
   .main {

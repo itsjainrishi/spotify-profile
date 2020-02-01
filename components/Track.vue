@@ -99,6 +99,7 @@ a {
   font-size: 14px;
   color: rgb(155, 155, 155);
   margin-top: 3px;
+  max-width: 650px;
 
   span:nth-of-type(n):not(:last-child) {
     &::after {
