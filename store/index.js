@@ -78,9 +78,7 @@ export const actions = {
         commit('nowPlayingChange', item)
         commit('isPlayingChange', currentSong)
       }
-    } catch (err) {
-      console.error(err)
-    }
+    } catch (err) {}
   },
   updateProgress: ({ commit, state }, props) => {
     commit('progressChange', props)

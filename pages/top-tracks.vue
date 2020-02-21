@@ -2,7 +2,7 @@
   <section class="main">
     <TopHeader>Top Tracks</TopHeader>
     <ul class="top__tracks__container">
-      <Track v-for="track in activeTracks" :track="track" />
+      <Track v-for="track in activeTracks" :key="track.id" :track="track" />
     </ul>
   </section>
 </template>
@@ -35,7 +35,7 @@ export default {
     } = await axios.get('/top-tracks')
     return { long: long.items, medium: medium.items, short: short.items }
   },
-  mounted() {
+  created() {
     this.$store.dispatch('setLong', { prop: 'tracks', data: this.long })
     this.$store.dispatch('setMedium', { prop: 'tracks', data: this.medium })
     this.$store.dispatch('setShort', { prop: 'tracks', data: this.short })

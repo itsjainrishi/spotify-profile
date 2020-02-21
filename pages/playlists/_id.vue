@@ -18,7 +18,11 @@
         </div>
         <div class="playlist__right column is-offset-1">
           <ul>
-            <Track v-for="item in playlistTracks" :track="item.track" />
+            <Track
+              v-for="item in playlistTracks"
+              :key="item.id"
+              :track="item.track"
+            />
           </ul>
         </div>
       </div>

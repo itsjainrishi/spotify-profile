@@ -35,7 +35,12 @@
 
 <script>
 export default {
-  props: ['track'],
+  props: {
+    track: {
+      type: Object,
+      default: () => {}
+    }
+  },
   computed: {
     trackTime() {
       const minutes = Math.floor(this.track.duration_ms / 60000)

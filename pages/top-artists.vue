@@ -48,7 +48,7 @@ export default {
     } = await axios.get('/top-artists')
     return { long: long.items, medium: medium.items, short: short.items }
   },
-  mounted() {
+  created() {
     this.$store.dispatch('setLong', { prop: 'artists', data: this.long })
     this.$store.dispatch('setMedium', { prop: 'artists', data: this.medium })
     this.$store.dispatch('setShort', { prop: 'artists', data: this.short })

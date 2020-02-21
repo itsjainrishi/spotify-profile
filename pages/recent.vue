@@ -6,7 +6,7 @@
       </h2>
     </header>
     <ul class="recent__tracks__container">
-      <Track v-for="item in recentTracks" :track="item.track" />
+      <Track v-for="item in recentTracks" :key="item.id" :track="item.track" />
     </ul>
   </section>
 </template>

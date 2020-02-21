@@ -79,7 +79,7 @@ export default {
         : 'has paused this track'
     }
   },
-  created() {
+  mounted() {
     this.getNowPlaying()
     this.staleTimer = setInterval(() => {
       this.getNowPlaying()
